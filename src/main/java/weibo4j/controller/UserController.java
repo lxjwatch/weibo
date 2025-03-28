@@ -20,8 +20,12 @@ import weibo4j.WeiboUserInfo;
 import weibo4j.http.AccessToken;
 import weibo4j.http.Result;
 import weibo4j.model.WeiboException;
+import weibo4j.util.RedisUtil;
 import weibo4j.util.WeiboConfig;
+import weibo4j.vo.UserVO;
 
+import javax.annotation.Resource;
+import javax.annotation.Resources;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -32,10 +36,17 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequestMapping("/oauth")
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class  UserController {
 
+    @Resource
+    private RedisUtil redisUtil;
+
+
     private final AuthRequestFactory factory;
+
+    public UserController(AuthRequestFactory factory) {
+        this.factory = factory;
+    }
 
     @GetMapping
     public Map<String, String> loginType() {
@@ -59,7 +70,13 @@ public class  UserController {
         if (response.ok()) {
             // 将data转为WeiboUserInfo
             WeiboUserInfo userInfo = JSON.parseObject(JSON.toJSONString(response.getData()), WeiboUserInfo.class);
-            return Result.ok(userInfo);
+            // 存储用户信息到 Redis
+            String userId = userInfo.getUuid(); // 假设用户信息中有 uid 字段
+            redisUtil.set(userId, userInfo.getToken().getAccessToken());
+            UserVO userVO = new UserVO();
+            userVO.setUuid(userId);
+            userVO.setAccessToken(userInfo.getToken().getAccessToken());
+            return Result.ok(userVO);
         }
         return Result.fail(response.getMsg());
     }
