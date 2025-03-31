@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"></meta>
+<html>
+<head>
+    <title>微博第三方登录</title>
+    <style>
+        .login-btn {
+            padding: 10px 20px;
+            background: #ff8140;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<button class="login-btn" onclick="weiboLogin()">使用微博登录</button>
+
+<script>
+    function weiboLogin() {
+        window.location.href = '/api/oauth/login/weibo';
+    }
+
+    // 自动处理回调（可选）
+    if (window.location.pathname === '/api/oauth/weibo/callback') {
+        const code = new URLSearchParams(window.location.search).get('code');
+        const state = new URLSearchParams(window.location.search).get('state');
+        if (code) {
+            fetch(`/oauth/weibo/callback?code=${code}&&state=${state}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('登录成功:', data);
+                    alert(`欢迎 ${data.data.Uuid}`);
+                    window.location.href = '/'; // 跳转到首页
+                })
+                .catch(err => console.error('登录失败:', err));
+        }
+    }
+</script>
+</body>
+</html>

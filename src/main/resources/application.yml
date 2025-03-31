@@ -23,11 +23,7 @@ justauth:
     WEIBO:
       client-id: 1716655542
       client-secret: 6ec4b6abda75f48ccbb64e4265ca1f70
-      redirect-uri: http://2bf52992.r1.cpolar.top/oauth/weibo/callback
-  cache:
-    type: redis
-    prefix: 'SOCIAL::STATE::'
-    timeout: 1h
+      redirect-uri: http://2bf52992.r1.cpolar.top/api/oauth/weibo/callback
 
 sa-token:
   # token 名称（同时也是 cookie 名称）

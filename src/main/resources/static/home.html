@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"></meta>
+<html>
+<head>
+    <title>首页</title>
+</head>
+<body>
+<h1>欢迎来到首页</h1>
+<div id="user-info"></div>
+
+<script>
+    // 从URL参数解析数据
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+
+    if (encodedData) {
+        try {
+            // 解码并转为JSON对象
+            const userData = JSON.parse(decodeURIComponent(encodedData));
+            document.getElementById('user-info').innerHTML = `
+                    <p>昵称：${userData.uuid}</p>
+                    <p>头像：${userData.accessToken}</p>
+                `;
+        } catch (e) {
+            console.error('数据解析失败:', e);
+            alert('用户信息加载失败');
+        }
+    } else {
+        console.warn('未找到用户数据');
+    }
+</script>
+</body>
+</html>

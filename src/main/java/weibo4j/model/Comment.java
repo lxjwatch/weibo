@@ -3,6 +3,7 @@ package weibo4j.model;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.util.StringUtils;
 import weibo4j.http.Response;
 
 import java.util.ArrayList;
@@ -30,7 +31,9 @@ public class Comment extends WeiboResponse implements java.io.Serializable {
             mid = json.getString("mid");
             idstr = json.getString("idstr");
             text = json.getString("text");
-            source = json.getString("source");
+            if (json.has("source") && !StringUtils.isEmpty(json.getString("source"))) {
+                source = json.getString("source");
+            }
             createdAt = parseDate(json.getString("created_at"), "EEE MMM dd HH:mm:ss z yyyy");
             if (!json.isNull("user"))
                 user = new User(json.getJSONObject("user"));
@@ -48,7 +51,9 @@ public class Comment extends WeiboResponse implements java.io.Serializable {
         mid = json.getString("mid");
         idstr = json.getString("idstr");
         text = json.getString("text");
-        source = json.getString("source");
+        if (json.has("source") && !StringUtils.isEmpty(json.getString("source"))) {
+            source = json.getString("source");
+        }
         createdAt = parseDate(json.getString("created_at"), "EEE MMM dd HH:mm:ss z yyyy");
         if (!json.isNull("user"))
             user = new User(json.getJSONObject("user"));

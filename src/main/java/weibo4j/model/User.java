@@ -26,6 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package weibo4j.model;
 
+import lombok.Data;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +41,7 @@ import java.util.List;
 /**
  * A data class representing Basic user information element
  */
+@Data
 public class User extends WeiboResponse implements java.io.Serializable {
 
     private static final long serialVersionUID = -332738032648843482L;
@@ -75,187 +77,8 @@ public class User extends WeiboResponse implements java.io.Serializable {
     private String weihao;                  //微號
     private String rawJson;
 
-    public String getRawJson() {
-        return rawJson;
-    }
-
-    public void setRawJson(String rawJson) {
-        this.rawJson = rawJson;
-    }
-
-    public String getVerified_reason() {
-        return verifiedReason;
-    }
-
-    public void setVerified_reason(String verifiedReason) {
-        this.verifiedReason = verifiedReason;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setScreenName(String screenName) {
-        this.screenName = screenName;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setProvince(int province) {
-        this.province = province;
-    }
-
-    public void setCity(int city) {
-        this.city = city;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
-    }
-
-    public void setUserDomain(String userDomain) {
-        this.userDomain = userDomain;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setFollowersCount(int followersCount) {
-        this.followersCount = followersCount;
-    }
-
-    public void setFriendsCount(int friendsCount) {
-        this.friendsCount = friendsCount;
-    }
-
-    public void setStatusesCount(int statusesCount) {
-        this.statusesCount = statusesCount;
-    }
-
-    public void setFavouritesCount(int favouritesCount) {
-        this.favouritesCount = favouritesCount;
-    }
 
     public User() {
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setFollowing(boolean following) {
-        this.following = following;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
-    public void setVerifiedType(int verifiedType) {
-        this.verifiedType = verifiedType;
-    }
-
-    public void setAllowAllActMsg(boolean allowAllActMsg) {
-        this.allowAllActMsg = allowAllActMsg;
-    }
-
-    public void setAllowAllComment(boolean allowAllComment) {
-        this.allowAllComment = allowAllComment;
-    }
-
-    public void setFollowMe(boolean followMe) {
-        this.followMe = followMe;
-    }
-
-    public void setAvatarLarge(String avatarLarge) {
-        this.avatarLarge = avatarLarge;
-    }
-
-    public void setOnlineStatus(int onlineStatus) {
-        this.onlineStatus = onlineStatus;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setBiFollowersCount(int biFollowersCount) {
-        this.biFollowersCount = biFollowersCount;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public String getWeihao() {
-        return weihao;
-    }
-
-    public void setWeihao(String weihao) {
-        this.weihao = weihao;
-    }
-
-    public String getVerifiedReason() {
-        return verifiedReason;
-    }
-
-    public void setVerifiedReason(String verifiedReason) {
-        this.verifiedReason = verifiedReason;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
-
-    public int getVerifiedType() {
-        return verifiedType;
-    }
-
-    public boolean isAllowAllActMsg() {
-        return allowAllActMsg;
-    }
-
-    public boolean isAllowAllComment() {
-        return allowAllComment;
-    }
-
-    public boolean isFollowMe() {
-        return followMe;
-    }
-
-    public String getAvatarLarge() {
-        return avatarLarge;
-    }
-
-    public int getOnlineStatus() {
-        return onlineStatus;
-    }
-
-    public int getBiFollowersCount() {
-        return biFollowersCount;
     }
 
     /*package*/
@@ -385,34 +208,6 @@ public class User extends WeiboResponse implements java.io.Serializable {
         return null;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getScreenName() {
-        return screenName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getProvince() {
-        return province;
-    }
-
-    public int getCity() {
-        return city;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public URL getProfileImageURL() {
         try {
             return new URL(profileImageUrl);
@@ -421,89 +216,6 @@ public class User extends WeiboResponse implements java.io.Serializable {
         }
     }
 
-    public URL getURL() {
-        try {
-            return new URL(url);
-        } catch (MalformedURLException ex) {
-            return null;
-        }
-    }
-
-    public String getUserDomain() {
-        return userDomain;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public int getFollowersCount() {
-        return followersCount;
-    }
-
-    public int getFriendsCount() {
-        return friendsCount;
-    }
-
-    public int getStatusesCount() {
-        return statusesCount;
-    }
-
-    public int getFavouritesCount() {
-        return favouritesCount;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public boolean isFollowing() {
-        return following;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public int getverifiedType() {
-        return verifiedType;
-    }
-
-    public boolean isallowAllActMsg() {
-        return allowAllActMsg;
-    }
-
-    public boolean isallowAllComment() {
-        return allowAllComment;
-    }
-
-    public boolean isfollowMe() {
-        return followMe;
-    }
-
-    public String getavatarLarge() {
-        return avatarLarge;
-    }
-
-    public int getonlineStatus() {
-        return onlineStatus;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public int getbiFollowersCount() {
-        return biFollowersCount;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public String getLang() {
-        return lang;
-    }
 
     @Override
     public int hashCode() {

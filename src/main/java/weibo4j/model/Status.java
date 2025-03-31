@@ -3,6 +3,7 @@ package weibo4j.model;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.util.StringUtils;
 import weibo4j.http.Response;
 
 import java.io.Serializable;
@@ -53,11 +54,13 @@ public class Status extends WeiboResponse implements Serializable {
         if (!isDeleted(json)) {
             try {
                 createdAt = parseDate(json.getString("created_at"), "EEE MMM dd HH:mm:ss z yyyy");
-                id = json.getString("id");
+                if (json.has("id") && !StringUtils.isEmpty(json.getString("id"))) {
+                    id = json.getString("id");
+                }
                 mid = json.getString("mid");
                 idstr = json.getLong("idstr");
                 text = json.getString("text");
-                if (!json.isNull("source")) {
+                if (json.has("source") && !StringUtils.isEmpty(json.getString("source"))) {
                     source = new Source(json.getString("source"));
                 }
                 inReplyToStatusId = getLong("in_reply_to_status_id", json);
@@ -316,33 +319,36 @@ public class Status extends WeiboResponse implements Serializable {
     }
 
     public static StatusWrapper constructWrapperStatus(Response res) throws WeiboException {
-        JSONObject jsonStatus = res.asJSONObject(); //asJSONArray();
-        JSONArray statuses = null;
-        try {
-            if (!jsonStatus.isNull("statuses")) {
-                statuses = jsonStatus.getJSONArray("statuses");
-            }
-            if (!jsonStatus.isNull("reposts")) {
-                statuses = jsonStatus.getJSONArray("reposts");
-            }
-            List<Status> status = new LinkedList<Status>();
-            if (null != statuses) {
-                int size = statuses.length();
-                for (int i = 0; i < size; i++) {
-                    JSONObject json = statuses.getJSONObject(i);
-                    if (!isDeleted(json)) {
-                        status.add(new Status());
+        if (res.getResponseAsString().length() > 3) {
+            JSONObject jsonStatus = res.asJSONObject(); //asJSONArray();
+            JSONArray statuses = null;
+            try {
+                if (!jsonStatus.isNull("statuses")) {
+                    statuses = jsonStatus.getJSONArray("statuses");
+                }
+                if (!jsonStatus.isNull("reposts")) {
+                    statuses = jsonStatus.getJSONArray("reposts");
+                }
+                List<Status> status = new LinkedList<Status>();
+                if (null != statuses) {
+                    int size = statuses.length();
+                    for (int i = 0; i < size; i++) {
+                        JSONObject json = statuses.getJSONObject(i);
+                        if (!isDeleted(json)) {
+                            status.add(new Status(json));
+                        }
                     }
                 }
+                long previousCursor = jsonStatus.optLong("previous_cursor");
+                long nextCursor = jsonStatus.optLong("next_cursor");
+                long totalNumber = jsonStatus.optLong("total_number");
+                String hasVisible = jsonStatus.optString("hasvisible");
+                return new StatusWrapper(status, previousCursor, nextCursor, totalNumber, hasVisible);
+            } catch (JSONException e) {
+                throw new WeiboException(e);
             }
-            long previousCursor = jsonStatus.optLong("previous_cursor");
-            long nextCursor = jsonStatus.optLong("next_cursor");
-            long totalNumber = jsonStatus.optLong("total_number");
-            String hasVisible = jsonStatus.optString("hasvisible");
-            return new StatusWrapper(status, previousCursor, nextCursor, totalNumber, hasVisible);
-        } catch (JSONException e) {
-            throw new WeiboException(e);
         }
+        return null;
     }
 
     @Override

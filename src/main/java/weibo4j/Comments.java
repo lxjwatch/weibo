@@ -230,12 +230,13 @@ public class Comments extends Weibo {
      *      href="http://open.weibo.com/wiki/2/comments/create">comments/create</a>
      * @since JDK 1.5
      */
-    public Comment createComment(String comment, String id)
+    public Comment createComment(String comment, String id, String rip)
             throws WeiboException {
         return new Comment(client.post(WeiboConfig.getValue("baseURL")
                 + "comments/create.json", new HttpParameter[]{
                 new HttpParameter("comment", comment),
-                new HttpParameter("id", id)}));
+                new HttpParameter("id", id),
+                new HttpParameter("rip", rip)}));
     }
 
     /**
@@ -273,13 +274,14 @@ public class Comments extends Weibo {
      *      href="http://open.weibo.com/wiki/2/comments/reply">comments/reply</a>
      * @since JDK 1.5
      */
-    public Comment replyComment(String cid, String id, String comment)
+    public Comment replyComment(String cid, String id, String comment,String rip)
             throws WeiboException {
         return new Comment(client.post(WeiboConfig.getValue("baseURL")
                 + "comments/reply.json", new HttpParameter[]{
                 new HttpParameter("cid", cid),
                 new HttpParameter("id", id),
-                new HttpParameter("comment", comment)}));
+                new HttpParameter("comment", comment),
+                new HttpParameter("rip", rip)}));
     }
 
     /**

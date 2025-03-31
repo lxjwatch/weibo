@@ -2,6 +2,7 @@ package weibo4j;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.multipart.MultipartFile;
 import weibo4j.model.*;
 import weibo4j.util.WeiboConfig;
 
@@ -26,8 +27,8 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/public_timeline">statuses/public_timeline
-     *      </a>
+     * href="http://open.weibo.com/wiki/2/statuses/public_timeline">statuses/public_timeline
+     * </a>
      * @since JDK 1.5
      */
     public StatusWrapper getPublicTimeline() throws WeiboException {
@@ -43,15 +44,15 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/public_timeline">statuses/public_timeline
-     *      </a>
+     * href="http://open.weibo.com/wiki/2/statuses/public_timeline">statuses/public_timeline
+     * </a>
      * @since JDK 1.5
      */
     public StatusWrapper getPublicTimeline(int count, int baseApp) throws WeiboException {
         return Status.constructWrapperStatus(client.get(
                 WeiboConfig.getValue("baseURL") + "statuses/public_timeline.json", new HttpParameter[]{
-                new HttpParameter("count", count),
-                new HttpParameter("base_app", baseApp)}));
+                        new HttpParameter("count", count),
+                        new HttpParameter("base_app", baseApp)}));
 
     }
 
@@ -65,7 +66,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a href="http://open.weibo.com/wiki/2/statuses/friends_timeline">
-     *      statuses/friends_timeline </a>
+     * statuses/friends_timeline </a>
      * @since JDK 1.5
      */
     public StatusWrapper getFriendsTimeline() throws WeiboException {
@@ -83,7 +84,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a href="http://open.weibo.com/wiki/2/statuses/friends_timeline">
-     *      statuses/friends_timeline </a>
+     * statuses/friends_timeline </a>
      * @since JDK 1.5
      */
     public StatusWrapper getFriendsTimeline(Integer baseAPP, Integer feature,
@@ -106,7 +107,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a href="http://open.weibo.com/wiki/2/statuses/friends_timeline/ids">
-     *      statuses/friends_timeline/ids </a>
+     * statuses/friends_timeline/ids </a>
      * @since JDK 1.5
      */
     public JSONObject getFriendsTimelineIds() throws WeiboException {
@@ -132,12 +133,13 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a href="http://open.weibo.com/wiki/2/statuses/home_timeline">
-     *      statuses/home_timeline </a>
+     * statuses/home_timeline </a>
      * @since JDK 1.5
      */
     public StatusWrapper getHomeTimeline() throws WeiboException {
         return Status.constructWrapperStatus(client.get(WeiboConfig
-                .getValue("baseURL") + "statuses/home_timeline.json"));
+                .getValue("baseURL") + "statuses/home_timeline.json")
+        );
 
     }
 
@@ -151,7 +153,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a href="http://open.weibo.com/wiki/2/Statuses/home_timeline">
-     *      statuses/home_timeline </a>
+     * statuses/home_timeline </a>
      * @since JDK 1.5
      */
     public StatusWrapper getHomeTimeline(Integer baseAPP, Integer feature,
@@ -172,7 +174,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/user_timeline">statuses/user_timeline</a>
+     * href="http://open.weibo.com/wiki/2/statuses/user_timeline">statuses/user_timeline</a>
      * @since JDK 1.5
      */
     public StatusWrapper getUserTimeline() throws WeiboException {
@@ -205,7 +207,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/user_timeline">statuses/user_timeline</a>
+     * href="http://open.weibo.com/wiki/2/statuses/user_timeline">statuses/user_timeline</a>
      * @since JDK 1.5
      */
     public StatusWrapper getUserTimelineByUid(String uid, Paging page,
@@ -236,7 +238,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/user_timeline">statuses/user_timeline</a>
+     * href="http://open.weibo.com/wiki/2/statuses/user_timeline">statuses/user_timeline</a>
      * @since JDK 1.5
      */
     public JSONObject getUserTimelineIdsByUid(String uid) throws WeiboException {
@@ -259,7 +261,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost_timeline">statuses/repost_timeline</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost_timeline">statuses/repost_timeline</a>
      * @since JDK 1.5
      */
     public StatusWrapper getRepostTimeline(String id) throws WeiboException {
@@ -278,7 +280,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost_timeline">statuses/repost_timeline</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost_timeline">statuses/repost_timeline</a>
      * @since JDK 1.5
      */
     public StatusWrapper getRepostTimeline(String id, Paging page)
@@ -297,7 +299,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost_timeline/ids">statuses/repost_timeline/ids</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost_timeline/ids">statuses/repost_timeline/ids</a>
      * @since JDK 1.5
      */
     public JSONObject getForwardTimelineIds(String id) throws WeiboException {
@@ -313,7 +315,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost_by_me">statuses/repost_by_me</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost_by_me">statuses/repost_by_me</a>
      * @since JDK 1.5
      */
     public StatusWrapper getForwardByMe() throws WeiboException {
@@ -329,7 +331,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost_by_me">statuses/repost_by_me</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost_by_me">statuses/repost_by_me</a>
      * @since JDK 1.5
      */
     public StatusWrapper getForwardByMe(Paging page) throws WeiboException {
@@ -344,7 +346,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/mentions">statuses/mentions</a>
+     * href="http://open.weibo.com/wiki/2/statuses/mentions">statuses/mentions</a>
      * @since JDK 1.5
      */
     public StatusWrapper getMentions() throws WeiboException {
@@ -363,7 +365,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/mentions">statuses/mentions</a>
+     * href="http://open.weibo.com/wiki/2/statuses/mentions">statuses/mentions</a>
      * @since JDK 1.5
      */
     public StatusWrapper getMentions(Paging page, Integer filter_by_author,
@@ -384,7 +386,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/mentions/ids">statuses/mentions/ids</a>
+     * href="http://open.weibo.com/wiki/2/statuses/mentions/ids">statuses/mentions/ids</a>
      * @since JDK 1.5
      */
     public JSONObject getMentionsIds() throws WeiboException {
@@ -410,7 +412,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/bilateral_timeline">statuses/bilateral_timeline</a>
+     * href="http://open.weibo.com/wiki/2/statuses/bilateral_timeline">statuses/bilateral_timeline</a>
      * @since JDK 1.5
      */
     public StatusWrapper getBilateralTimeline() throws WeiboException {
@@ -433,12 +435,12 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.1
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/show">statuses/show</a>
+     * href="http://open.weibo.com/wiki/2/statuses/show">statuses/show</a>
      * @since JDK 1.5
      */
     public Status showStatus(String id) throws WeiboException {
         return new Status(client.get(WeiboConfig.getValue("baseURL")
-                + "statuses/show.json",
+                        + "statuses/show.json",
                 new HttpParameter[]{new HttpParameter("id", id)}));
     }
 
@@ -451,7 +453,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/querymid">statuses/querymid</a>
+     * href="http://open.weibo.com/wiki/2/statuses/querymid">statuses/querymid</a>
      * @since JDK 1.5
      */
     public JSONObject QueryMid(Integer type, String id) throws WeiboException {
@@ -470,7 +472,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/querymid">statuses/querymid</a>
+     * href="http://open.weibo.com/wiki/2/statuses/querymid">statuses/querymid</a>
      * @since JDK 1.5
      */
     public JSONObject QueryMid(Integer type, String id, int is_batch) throws WeiboException {
@@ -489,7 +491,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/queryid">statuses/queryid</a>
+     * href="http://open.weibo.com/wiki/2/statuses/queryid">statuses/queryid</a>
      * @since JDK 1.5
      */
     public JSONObject QueryId(String mid, Integer type, int isBase62) throws WeiboException {
@@ -511,7 +513,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/queryid">statuses/queryid</a>
+     * href="http://open.weibo.com/wiki/2/statuses/queryid">statuses/queryid</a>
      * @since JDK 1.5
      */
     public JSONObject QueryId(String mid, Integer type, Integer isBatch, Integer isBase62) throws WeiboException {
@@ -531,7 +533,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
+     * href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
      * @since JDK 1.5
      */
     public JSONArray getForwardDaily() throws WeiboException {
@@ -546,7 +548,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
+     * href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
      * @since JDK 1.5
      */
     public JSONArray getForwardWeekly() throws WeiboException {
@@ -561,7 +563,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
+     * href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
      * @since JDK 1.5
      */
     public JSONArray getCommentsDaily() throws WeiboException {
@@ -576,7 +578,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
+     * href="http://open.weibo.com/wiki/2/statuses/hot/repost_daily">statuses/hot/repost_daily</a>
      * @since JDK 1.5
      */
     public JSONArray getCommentsWeekly() throws WeiboException {
@@ -592,12 +594,12 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost">statuses/repost</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost">statuses/repost</a>
      * @since JDK 1.5
      */
     public Status forward(String id) throws WeiboException {
         return new Status(client.post(WeiboConfig.getValue("baseURL")
-                + "statuses/repost.json",
+                        + "statuses/repost.json",
                 new HttpParameter[]{new HttpParameter("id", id)}));
     }
 
@@ -611,7 +613,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/repost">statuses/repost</a>
+     * href="http://open.weibo.com/wiki/2/statuses/repost">statuses/repost</a>
      * @since JDK 1.5
      */
     public Status forward(String id, String status, Integer isComment)
@@ -630,12 +632,12 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/destroy">statuses/destroy</a>
+     * href="http://open.weibo.com/wiki/2/statuses/destroy">statuses/destroy</a>
      * @since JDK 1.5
      */
     public Status destroy(String id) throws WeiboException {
         return new Status(client.post(WeiboConfig.getValue("baseURL")
-                + "statuses/destroy.json",
+                        + "statuses/destroy.json",
                 new HttpParameter[]{new HttpParameter("id", id)}));
     }
 
@@ -647,12 +649,12 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/update">statuses/update</a>
+     * href="http://open.weibo.com/wiki/2/statuses/update">statuses/update</a>
      * @since JDK 1.5
      */
     public Status updateStatus(String status) throws WeiboException {
         return new Status(client.post(WeiboConfig.getValue("baseURL")
-                + "statuses/update.json",
+                        + "statuses/update.json",
                 new HttpParameter[]{new HttpParameter("status", status)}));
     }
 
@@ -673,7 +675,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/update">statuses/update</a>
+     * href="http://open.weibo.com/wiki/2/statuses/update">statuses/update</a>
      * @since JDK 1.5
      */
     public Status updateStatus(String status, Float lat, Float longs,
@@ -695,7 +697,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/upload">statuses/upload</a>
+     * href="http://open.weibo.com/wiki/2/statuses/upload">statuses/upload</a>
      * @since JDK 1.5
      */
     public Status uploadStatus(String status, ImageItem item)
@@ -717,7 +719,7 @@ public class Timeline extends Weibo {
      * @throws WeiboException when Weibo service or network is unavailable
      * @version weibo4j-V2 1.0.0
      * @see <a
-     *      href="http://open.weibo.com/wiki/2/statuses/upload">statuses/upload</a>
+     * href="http://open.weibo.com/wiki/2/statuses/upload">statuses/upload</a>
      * @since JDK 1.5
      */
     public Status uploadStatus(String status, ImageItem item, Float lat,
@@ -742,6 +744,21 @@ public class Timeline extends Weibo {
         return Emotion.constructEmotions(client.get(WeiboConfig
                 .getValue("baseURL") + "emotions.json"));
     }
+
+    /**
+     * 第三方分享一条链接到微博
+     *
+     * @param status 用户分享到微博的文本内容，必须做URLencode ，内容不超过140个汉字
+     * @param rip    用户分享的ip地址，格式为46.152.12.45
+     */
+    public Status share(String status, String rip)
+            throws WeiboException {
+        return new Status(client.post(WeiboConfig.getValue("baseURL")
+                +  "statuses/share.json", new HttpParameter[]{
+                new HttpParameter("status", status),
+                new HttpParameter("rip", rip)}));
+    }
+
 
     /**
      * 获取微博官方表情的详细信息

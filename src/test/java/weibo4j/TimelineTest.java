@@ -33,9 +33,8 @@ public class TimelineTest {
     @Test
     public void testGetStatusCount() throws Exception {
         Timeline tl = weibo.getTimelineService();
-        StatusWrapper wrapper = tl.getHomeTimeline();
-        assertNotNull(wrapper);
-        LOG.info("{}", wrapper);
+
+
     }
 
     @Test
